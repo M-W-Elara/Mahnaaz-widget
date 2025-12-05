@@ -1,30 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Metadata -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Title</title>
+  <title>Variable Widget</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #ffe6f2; 
+      padding: 20px;
+    }
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap"
-    rel="stylesheet">
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 460px;
+      margin: auto;
+      border: 4px solid #800020; 
+    }
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="../css/widget-page.css">
+    h2 {
+      color: #800020; 
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 17px;
+      background: #b266ff; 
+      color: white;
+      width: 100%;
+      margin-top: 12px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #9933ff; 
+    }
+
+    input {
+      padding: 12px;
+      border-radius: 10px;
+      border: 2px solid #ff66b2; 
+      width: 100%;
+      margin: 10px 0;
+      box-sizing: border-box;
+      background: #ffe6f2; 
+    }
+
+    .value-box {
+      font-size: 20px;
+      font-weight: bold;
+      background: #f2e6ff; 
+      color: #800020; 
+      padding: 14px;
+      border-radius: 12px;
+      margin-top: 18px;
+      text-align: center;
+      border: 2px solid #b266ff; 
+    }
+
+    p {
+      color: #800020; 
+      font-size: 16px;
+    }
+  </style>
 </head>
-
 <body>
-  <script type="module">
-    import { WidgetPage } from "../js/WidgetPage.js";
+  <div class="card">
+    <h2>Variables Made Easy!</h2>
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const widgetPage = new WidgetPage("widget-page-template", document.body);
+    <p>A variable is like a little box that holds a number.</p>
+
+    <p>Type a number below:</p>
+    <input id="userInput" type="number" placeholder="Enter a number" />
+
+    <button id="storeBtn">Save Number</button>
+
+    <div class="value-box" id="displayBox">Nothing saved yet!</div>
+  </div>
+
+  <script>
+    let myVariable = null;
+
+    document.getElementById("storeBtn").addEventListener("click", () => {
+      const val = document.getElementById("userInput").value;
+
+      if (val === "") {
+        document.getElementById("displayBox").textContent = "Type something first!";
+        return;
+      }
+
+      myVariable = Number(val);
+      document.getElementById("displayBox").textContent = "Your box now holds: " + myVariable;
     });
   </script>
 </body>
-
 </html>
